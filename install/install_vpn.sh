@@ -9,6 +9,10 @@ sudo apt-get install openvpn easy-rsa
 make-cadir ~/openvpn-ca || echo "CA Directory already exists"
 pushd ~/openvpn-ca
 
+# http://stackoverflow.com/questions/24255205/error-loading-extension-section-usr-cert
+echo "HACK TO FIX openssl-1.0.0.cnf"
+perl -p -i -e 's|^(subjectAltName=)|#$1|;' openssl-1.0.0.cnf
+
 
 echo "export KEY_COUNTRY=US" >> vars
 echo "export KEY_PROVINCE=OR" >> vars
@@ -31,3 +35,5 @@ cat ~/server.conf.template \
 popd
 cp openvpn-ca/keys/deeplearninggroup.com.* /etc/openvpn
 cp openvpn-ca/keys/ca.* /etc/openvpn
+cp openvpn-ca/keys/dh.* /etc/openvpn
+

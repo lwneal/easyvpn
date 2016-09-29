@@ -25,4 +25,4 @@ cat ~/client.conf.template | \
   sed "s/CLIENT_NAME/${CLIENT_NAME}/" | \
   sed "s/SERVER_NAME/${SERVER_NAME}/" > ${CLIENT_NAME}.conf
 
-tar czvf ~/${CLIENT_NAME}.tar.gz ${CLIENT_NAME}.key ${CLIENT_NAME}.conf ${CLIENT_NAME}.csr ${CLIENT_NAME}.crt ${SERVER_NAME}.crt
+tar czvf ~/${CLIENT_NAME}.tar.gz ${CLIENT_NAME}.key ${CLIENT_NAME}.conf ${CLIENT_NAME}.csr ${CLIENT_NAME}.crt ${SERVER_NAME}.crt ca.crt
