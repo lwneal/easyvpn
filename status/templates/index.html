@@ -25,7 +25,8 @@
 
   <style>
 body {
-  background-color: #ddddee;
+  color: #eeeeee;
+  background-color: #272727;
 }
 i {
   float: left;
@@ -36,7 +37,7 @@ i:hover {
   font-weight: bold;
 }
 .gradient {
-  background-image: linear-gradient(45deg, #308cfb, #eeeeee);
+  background-image: linear-gradient(45deg, #b74e13, #eeeeee);
   border-radius: 5px;
   width: 100%;
   overflow:hidden;
@@ -60,28 +61,30 @@ i:hover {
   overflow: hidden;
   line-height: 0;
   position: relative;
-  height: 64px;
+  height: 96px;
   z-index: 0;
 }
   </style>
 
 </head>
 <body>
+
   <div class="container">
     <div class="row">
       <div class="column">
-        <h4>Connected Devices</h4>
-        {{ devices | length }} devices
+
+        <h4>Connected Computers</h4>
         <br>
-        {% for device in devices: %}
+        {% for device in devices if not device['is_robot']: %}
         <div class="gradient">
           <div class="buttons">
             <a href="/">
               <i class="fa fa-cloud" aria-hidden="true"></i>
             </a>
             <span class=big style="position: absolute;">
+            <a href="http://{{ device['vpn_ip'] }}">{{ device['vpn_ip'] }}</a>
+            <br>
             {{ device['hostname'] }}
-            {{ device['vpn_ip'] }}
             </span>
           </div>
           <div class="img_holder">
@@ -92,6 +95,7 @@ i:hover {
         <br>
         {% endfor %}
         <br>
+
       </div>
     </div>
   </div>
@@ -99,15 +103,33 @@ i:hover {
   <div class="container">
     <div class="row">
       <div class="column">
+
         <h4>Connected Robots</h4>
-          <span>No Robots Connected</span>
         <br>
+        {% for device in devices if device['is_robot']: %}
+        <div class="gradient">
+          <div class="buttons">
+            <a href="/">
+              <i class="fa fa-cloud" aria-hidden="true"></i>
+            </a>
+            <span class=big style="position: absolute;">
+            <a href="http://{{ device['vpn_ip'] }}">{{ device['vpn_ip'] }}</a>
+            <br>
+            {{ device['hostname'] }}
+            </span>
+          </div>
+          <div class="img_holder">
+            <img src="{{ device['image_url'] }}" />
+          </div>
+          <br>
+        </div>
+        <br>
+        {% endfor %}
+        <br>
+
       </div>
     </div>
-
   </div>
 
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
 </html>

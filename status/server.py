@@ -3,8 +3,10 @@ import flask
 app = flask.Flask(__name__)
 
 hostname_images = {
+	'nealla-eggbert': 'static/macbook.jpg',
 	'nealla-grapefruit': 'static/gtx1080.jpg',
 	'nealla-jill': 'static/gtx1080.jpg',
+	'robot-blood': 'static/turtlebot.jpg',
 }
 
 
@@ -32,6 +34,7 @@ def get_devices():
       'public_ip': public_ip,
       'last_connected': last_connected,
       'image_url': '/static/clouds.jpg',
+      'is_robot': hostname.startswith('robot'),
     }
     for host in hostname_images:
       if hostname.startswith(host):
