@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Deep Learning Group</title>
+  <meta name="description" content="Gromdar, by Gromdar">
+  <meta name="author" content="Gromdar">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="static/css/normalize.css">
+  <link rel="stylesheet" href="static/css/skeleton.css">
+  <link rel="stylesheet" href="static/css/font-awesome.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/static/favicon.ico">
+
+  <style>
+body {
+  background-color: #ddddee;
+}
+i {
+  float: left;
+  padding: 10px;
+  width: 32px;
+}
+i:hover {
+  font-weight: bold;
+}
+.gradient {
+  background-image: linear-gradient(45deg, #308cfb, #eeeeee);
+  border-radius: 5px;
+  width: 100%;
+  overflow:hidden;
+}
+.gradient img {
+  -webkit-mask-image: -webkit-gradient(linear, left top, right bottom, from(rgba(0,0,0,0)), to(rgba(0,0,0,1)));
+}
+.gradient * {
+  float: left;
+  color: white;
+  z-index: 1;
+}
+.buttons {
+  padding: 12px;;
+}
+.big {
+  font-size: 1.4em;
+}
+.img_holder {
+  float: right;
+  overflow: hidden;
+  line-height: 0;
+  position: relative;
+  height: 64px;
+  z-index: 0;
+}
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="column">
+        <h4>Connected Devices</h4>
+        {{ devices | length }} devices
+        <br>
+        {% for device in devices: %}
+        <div class="gradient">
+          <div class="buttons">
+            <a href="/">
+              <i class="fa fa-cloud" aria-hidden="true"></i>
+            </a>
+            <span class=big style="position: absolute;">
+            {{ device['hostname'] }}
+            {{ device['vpn_ip'] }}
+            </span>
+          </div>
+          <div class="img_holder">
+            <img src="{{ device['image_url'] }}" />
+          </div>
+          <br>
+        </div>
+        <br>
+        {% endfor %}
+        <br>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="column">
+        <h4>Connected Robots</h4>
+          <span>No Robots Connected</span>
+        <br>
+      </div>
+    </div>
+
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
