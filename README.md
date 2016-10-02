@@ -1,4 +1,4 @@
-* Easy VPN *
+## Easy VPN
 
 Are you tired of Google assuming things about you just because of where you live?
 
@@ -9,12 +9,12 @@ Do you want to control your ROS-based research robot from a remotely located com
 You can solve all these problems by setting up a Virtual Private Network!
 
 
-* Step Zero *
+## Step Zero
 
 If you are using Windows, back up your files and install a UNIX-based operating system.
 
 
-* Step One *
+## Step One
 
 Go to Amazon Web Services, digitalocean, or your favorite other provider and rent a server.
 
@@ -23,19 +23,19 @@ Make sure the server is running Ubuntu 16.04 or a similar version of Linux.
 Make sure the server has the following ports open: TCP 22, TCP 943, UDP 1194
 
 
-* Step Two *
+## Step Two
 
 Find the IP address of the server you rented. For example: 54.68.123.234
 
 
-* Step Three (optional) *
+## Step Three (optional)
 
 Register a domain name through Amazon Route53, namecheap.com, or your favorite domain name registrar.
 
 Create an A record that points 54.68.123.234 to eg. yourdomainname.com or vpn.yourdomainname.com
 
 
-* Step Four *
+## Step Four
 
 On the server, create a user account for yourself, with sudo access, public key authentication, and no password.
 
@@ -51,7 +51,7 @@ or
 Where 54.68.123.234 or mydomanname.com is the hostname of the server that you have rented.
 
 
-* Step Five *
+## Step Five
 
 Run the command:
 
@@ -60,7 +60,7 @@ Run the command:
 Where 54.68.123.234 is the hostname of the server that you have rented.
 
 
-* Step Six *
+## Step Six
 
 Add a client for each computer you want to connect to the VPN. For example:
 
@@ -71,7 +71,7 @@ Add a client for each computer you want to connect to the VPN. For example:
 This will create a laptop-myusername.tar.gz file for each computer.
 
 
-* Step Seven *
+## Step Seven
 
 For each computer you want to connect to the VPN, move computername-username.tar.gz to the computer and install it.
 
