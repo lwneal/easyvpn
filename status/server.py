@@ -22,24 +22,21 @@ def get_devices():
   devices = []
   for line in lines[start:end]:
     vpn_ip, hostname, public_ip, last_connected = line.split(',')
-    device = {
+    hostname = hostname.split('.')[0]
+    devices.append({
       'vpn_ip': vpn_ip,
       'hostname': hostname,
       'public_ip': public_ip,
       'last_connected': last_connected,
       'image_url': get_image_for_hostname(hostname),
-      'is_robot': hostname.startswith('robot'),
-    }
-    for host in hostname_images:
-      if hostname.startswith(host):
-        device['image_url'] = hostname_images[host]
-    devices.append(device)
+      'is_robot': is_robot(hostname),
+    })
   return devices
 
 
 def get_image_for_hostname(hostname):
     words = hostname.split('-')
-    if 'turtlebot' in words or 'ros' in words or 'robot' in words:
+    if is_robot(hostname):
         return 'static/turtlebot.jpg'
     if 'laptop' in words or 'macbook' in words:
         return 'static/macbook.jpg'
@@ -47,6 +44,9 @@ def get_image_for_hostname(hostname):
         return 'static/gtx1080.jpg'
     return 'static/clouds.jpg'
 
+def is_robot(hostname):
+    words = hostname.split('-')
+    return 'robot' in words or 'ros' in words or 'turtlebot' in words
 
 if __name__ == '__main__':
   port = 8004

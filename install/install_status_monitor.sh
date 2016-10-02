@@ -16,10 +16,10 @@ service openvpn start
 service openvpn status
 
 echo "Killing daemon..."
-pkill -f "python server.py --port=$PORT"
+pkill -f "python server.py"
 
 echo "Summoning daemon..."
 cd status
-nohup python server.py > stdout.log 2>stderr.log &
+nohup python server.py --port=$PORT > stdout.log 2>stderr.log &
 
 echo "Status page now available at is listening on http://`get_private_ip`:$PORT"
