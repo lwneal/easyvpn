@@ -1,13 +1,7 @@
+import sys
 import flask
 
 app = flask.Flask(__name__)
-
-hostname_images = {
-	'nealla-eggbert': 'static/macbook.jpg',
-	'nealla-grapefruit': 'static/gtx1080.jpg',
-	'nealla-jill': 'static/gtx1080.jpg',
-	'robot-blood': 'static/turtlebot.jpg',
-}
 
 
 @app.route('/static/<path:path>')
@@ -33,7 +27,7 @@ def get_devices():
       'hostname': hostname,
       'public_ip': public_ip,
       'last_connected': last_connected,
-      'image_url': '/static/clouds.jpg',
+      'image_url': get_image_for_hostname(hostname),
       'is_robot': hostname.startswith('robot'),
     }
     for host in hostname_images:
@@ -42,5 +36,21 @@ def get_devices():
     devices.append(device)
   return devices
 
+
+def get_image_for_hostname(hostname):
+    words = hostname.split('-')
+    if 'turtlebot' in words or 'ros' in words or 'robot' in words:
+        return 'static/turtlebot.jpg'
+    if 'laptop' in words or 'macbook' in words:
+        return 'static/macbook.jpg'
+    if 'gpu' in words or 'desktop' in words:
+        return 'static/gtx1080.jpg'
+    return 'static/clouds.jpg'
+
+
 if __name__ == '__main__':
-  app.run('0.0.0.0', port=80)
+  port = 8004
+  for arg in sys.argv:
+    if '--port' in arg:
+      port = int(arg.split('=')[-1])
+  app.run('0.0.0.0', port=port)
