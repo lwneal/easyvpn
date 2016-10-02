@@ -41,7 +41,7 @@ export KEY_OU=$SERVER_NAME
 export KEY_NAME=$SERVER_NAME
 
 ./build-ca --batch
-echo -e '\n\n\n\n\n\n\n\n\n\ny\n' | ./build-key-server $SERVER_NAME
+./pkitool --server $SERVER_NAME
 ./build-dh
 
 cat ~/server.conf.template \

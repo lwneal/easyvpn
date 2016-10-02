@@ -1,9 +1,11 @@
 #!/bin/bash
 set -e
-set -x
 
+# Client name should be eg. laptop-nealla or ros-pr2-harris
 CLIENT_NAME=$1
-SERVER_NAME=deeplearninggroup.com
+
+# Read the server name from ca.crt which we created with build_server.sh
+SERVER_NAME=$(openssl x509 -in ~/openvpn-ca/keys/ca.crt -text | grep -o "O=[^\,]*" | head -1 | cut -c 3-)
 
 if [ $# -lt 1 ]; then
   echo "Usage: $0 boblaptop"
