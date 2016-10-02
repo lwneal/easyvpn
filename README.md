@@ -1,4 +1,4 @@
-* Easy VPN*
+* Easy VPN *
 
 Are you tired of Google assuming things about you just because of where you live?
 
@@ -83,3 +83,14 @@ For Linux, run:
     cd /etc/openvpn
     sudo tar xzvf ~/my-other-computer-myusername.tar.gz
     sudo echo 'AUTOSTART="all"' >> /etc/default/openvpn
+
+
+After the VPN is set up, you can add a nicely formatted status page by running:
+
+    ./build_status_monitor.sh serverhostname.com
+
+Then visit port 8004 on the server to see which devices are currently connected to the VPN.
+Note: ensure that port 8004 is not open to the public Internet
+
+
+To route all of your Internet traffic through the VPN, follow instructions [here](https://openvpn.net/index.php/open-source/documentation/howto.html#redirect)
