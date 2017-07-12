@@ -4,7 +4,7 @@ set -e
 if [ $# -lt 2 ]; then
     echo "Usage:"
     echo -e "\t$0 mydomain.com laptop-bobby"
-    echo "Creates a new VPN client named laptop-bobby"
+    echo "Creates and downloads keys for a new VPN client named laptop-bobby"
     echo "Use the word 'laptop', 'desktop', 'ros-turtlebot' etc in the name for automatic host type recognition"
     echo
     echo "Arguments:"
