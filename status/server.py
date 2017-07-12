@@ -37,7 +37,9 @@ def get_devices():
 def get_image_for_hostname(hostname):
     words = hostname.split('-')
     if is_robot(hostname):
-        return 'static/turtlebot.jpg'
+        if 'turtlebot' in hostname:
+            return 'static/turtlebot.jpg'
+        return 'static/pr2.jpg'
     if 'laptop' in words or 'macbook' in words:
         return 'static/macbook.jpg'
     if 'gpu' in words or 'desktop' in words:
