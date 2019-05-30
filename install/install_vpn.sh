@@ -42,6 +42,7 @@ export KEY_NAME=$SERVER_NAME
 
 ./build-ca --batch
 ./pkitool --server $SERVER_NAME
+openvpn --genkey --secret keys/ta.key
 ./build-dh
 
 cat ~/server.conf.template \
@@ -52,4 +53,5 @@ popd
 cp openvpn-ca/keys/${SERVER_NAME}.* /etc/openvpn
 cp openvpn-ca/keys/ca.* /etc/openvpn
 cp openvpn-ca/keys/dh* /etc/openvpn
+cp openvpn-ca/keys/ta.key /etc/openvpn
 
